@@ -80,7 +80,7 @@ const Contact = () => {
                     LinkedIn
                   </p>
                   <p className="font-medium text-foreground">
-                    Hari Prasath S
+                    Hariprasath S
                   </p>
                 </div>
               </a>
@@ -134,14 +134,6 @@ const Contact = () => {
           </ScrollReveal>
         </div>
 
-        {/* Footer */}
-        <ScrollReveal>
-          <div className="mt-24 pt-8 border-t border-border/50 text-center">
-            <p className="text-xs text-stone tracking-wider">
-              © 2026 Hari Prasath S. Crafted with precision.
-            </p>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );
