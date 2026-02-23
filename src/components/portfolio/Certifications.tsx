@@ -1,14 +1,16 @@
 import { Award, BookOpen, Trophy } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import ScrollReveal from "./ScrollReveal";
 
 const certifications = [
-  "AWS Skill Builder",
-  "IBM AI Fundamentals",
-  "Cisco Introduction to Cybersecurity",
-  "Future Skills Prime – Acquiring Data",
-  "Tata Forage – Cybersecurity Analyst Simulation",
-  "Infosys Springboard – Java",
-  "Oracle – Generative AI",
+  { name: "AWS Skill Builder", icon: "☁️" },
+  { name: "IBM AI Fundamentals", icon: "🤖" },
+  { name: "Cisco Introduction to Cybersecurity", icon: "🔒" },
+  { name: "Future Skills Prime – Acquiring Data", icon: "📊" },
+  { name: "Tata Forage – Cybersecurity Analyst Simulation", icon: "🛡️" },
+  { name: "Infosys Springboard – Java", icon: "☕" },
+  { name: "Oracle – Generative AI", icon: "✨" },
 ];
 
 const awards = [
@@ -22,76 +24,79 @@ const awards = [
   },
 ];
 
+const CertCard = ({ cert, index }: { cert: (typeof certifications)[0]; index: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-30px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
+      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="glass-card-elevated rounded-2xl p-5 flex items-center gap-4 group hover:border-accent/30 transition-all duration-300 float-3d"
+    >
+      <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 text-lg group-hover:scale-110 transition-transform">
+        {cert.icon}
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-medium text-foreground truncate">{cert.name}</p>
+      </div>
+      <Award size={14} className="text-stone group-hover:text-accent transition-colors flex-shrink-0" />
+    </motion.div>
+  );
+};
+
 const Certifications = () => {
   return (
     <section className="section-padding">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 md:gap-24">
-          {/* Certifications */}
-          <div>
-            <ScrollReveal>
-              <p className="text-sm font-medium tracking-[0.3em] uppercase text-accent mb-4">
-                Credentials
-              </p>
-              <h2 className="editorial-subheading mb-10">
-                Certifications<span className="text-gradient-warm">.</span>
-              </h2>
-            </ScrollReveal>
+        {/* Certifications */}
+        <ScrollReveal>
+          <p className="text-sm font-medium tracking-[0.3em] uppercase text-accent mb-4 text-center">
+            Credentials
+          </p>
+          <h2 className="editorial-heading text-center mb-12">
+            Certifications<span className="text-gradient-warm">.</span>
+          </h2>
+        </ScrollReveal>
 
-            <div className="space-y-3">
-              {certifications.map((cert, i) => (
-                <ScrollReveal key={cert} delay={i * 0.05}>
-                  <div className="flex items-center gap-3 py-3 border-b border-border/50 group hover:border-accent/30 transition-colors duration-300">
-                    <Award
-                      size={16}
-                      className="text-stone group-hover:text-accent transition-colors flex-shrink-0"
-                    />
-                    <span className="text-sm font-medium text-foreground">
-                      {cert}
-                    </span>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
+          {certifications.map((cert, i) => (
+            <CertCard key={cert.name} cert={cert} index={i} />
+          ))}
+        </div>
+
+        {/* Awards */}
+        <ScrollReveal>
+          <p className="text-sm font-medium tracking-[0.3em] uppercase text-accent mb-4 text-center">
+            Recognition
+          </p>
+          <h2 className="editorial-subheading text-center mb-10">
+            Awards & <span className="italic font-normal">Research</span>
+          </h2>
+        </ScrollReveal>
+
+        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {awards.map((award, i) => (
+            <ScrollReveal key={award.title} delay={i * 0.15}>
+              <div className="glass-card-elevated rounded-2xl p-6 float-3d">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    {i === 0 ? (
+                      <Trophy size={18} className="text-accent" />
+                    ) : (
+                      <BookOpen size={18} className="text-accent" />
+                    )}
                   </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-
-          {/* Awards */}
-          <div>
-            <ScrollReveal>
-              <p className="text-sm font-medium tracking-[0.3em] uppercase text-accent mb-4">
-                Recognition
-              </p>
-              <h2 className="editorial-subheading mb-10">
-                Awards & <span className="italic font-normal">Research</span>
-              </h2>
-            </ScrollReveal>
-
-            <div className="space-y-6">
-              {awards.map((award, i) => (
-                <ScrollReveal key={award.title} delay={i * 0.15}>
-                  <div className="glass-card-elevated rounded-2xl p-6 float-3d">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                        {i === 0 ? (
-                          <Trophy size={18} className="text-accent" />
-                        ) : (
-                          <BookOpen size={18} className="text-accent" />
-                        )}
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-foreground mb-1">
-                          {award.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground">
-                          {award.subtitle}
-                        </p>
-                      </div>
-                    </div>
+                  <div>
+                    <h3 className="font-medium text-foreground mb-1">{award.title}</h3>
+                    <p className="text-sm text-muted-foreground">{award.subtitle}</p>
                   </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>

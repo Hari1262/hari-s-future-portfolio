@@ -52,7 +52,7 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.4 }}
           className="editorial-heading mb-6"
         >
-          Hari Prasath
+          Hariprasath
           <span className="text-gradient-warm italic font-normal"> S</span>
         </motion.h1>
 
