@@ -60,9 +60,9 @@ const Education = () => {
               return (
                 <motion.div
                   key={step.degree}
-                  initial={{ opacity: 0, x: isRight ? -60 : 60 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isRight ? -60 : 60 }}
-                  transition={{ duration: 0.7, delay: 0.3 + i * 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  initial={{ opacity: 0, x: isRight ? -60 : 60, filter: "blur(4px)" }}
+                  animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : { opacity: 0, x: isRight ? -60 : 60, filter: "blur(4px)" }}
+                  transition={{ duration: 0.8, delay: 0.3 + i * 0.25, ease: [0.22, 1, 0.36, 1] }}
                   className={`relative flex items-start gap-6 md:gap-0 ${
                     isRight ? "md:flex-row" : "md:flex-row-reverse"
                   }`}

@@ -33,10 +33,10 @@ const AboutCard = ({ point, index }: { point: typeof aboutPoints[0]; index: numb
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50, rotateY: -10 }}
-      animate={isInView ? { opacity: 1, y: 0, rotateY: 0 } : { opacity: 0, y: 50, rotateY: -10 }}
-      transition={{ duration: 0.7, delay: index * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
-      whileHover={{ y: -6, scale: 1.02, rotateY: 3 }}
+      initial={{ opacity: 0, y: 50, rotateY: -10, filter: "blur(4px)" }}
+      animate={isInView ? { opacity: 1, y: 0, rotateY: 0, filter: "blur(0px)" } : { opacity: 0, y: 50, rotateY: -10, filter: "blur(4px)" }}
+      transition={{ duration: 0.8, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -8, scale: 1.03, boxShadow: "0 20px 60px hsl(var(--shadow-elevation))" }}
       className="glass-card-elevated rounded-2xl p-7 group cursor-default"
       style={{ perspective: "800px" }}
     >
