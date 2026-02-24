@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, FileDown } from "lucide-react";
 import TypeWriter from "./TypeWriter";
 import heroBg from "@/assets/hero-bg.jpg";
+import profilePic from "@/assets/profile-pic.png";
 
 const Hero = () => {
   return (
@@ -46,15 +47,35 @@ const Hero = () => {
           </p>
         </motion.div>
 
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="editorial-heading mb-6"
+          className="flex items-center justify-center gap-5 md:gap-7 mb-6"
         >
-          Hariprasath
-          <span className="text-gradient-warm italic font-normal"> S</span>
-        </motion.h1>
+          <motion.div
+            whileHover={{ scale: 1.08, rotate: 3 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            className="relative shrink-0"
+          >
+            <div className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-[3px] border-accent/50 shadow-lg shadow-accent/10">
+              <img
+                src={profilePic}
+                alt="Hariprasath S"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              className="absolute -inset-1.5 rounded-full border border-dashed border-accent/30 pointer-events-none"
+            />
+          </motion.div>
+          <h1 className="editorial-heading">
+            Hariprasath
+            <span className="text-gradient-warm italic font-normal"> S</span>
+          </h1>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
