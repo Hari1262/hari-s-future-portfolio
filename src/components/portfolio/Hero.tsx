@@ -51,14 +51,14 @@ const Hero = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="flex items-center justify-center gap-5 md:gap-7 mb-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mb-6"
         >
           <motion.div
             whileHover={{ scale: 1.08, rotate: 3 }}
             transition={{ type: "spring", stiffness: 300, damping: 15 }}
             className="relative shrink-0"
           >
-            <div className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-[3px] border-accent/50 shadow-lg shadow-accent/10">
+            <div className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden border-[3px] border-accent/50 shadow-xl shadow-accent/20">
               <img
                 src={profilePic}
                 alt="Hariprasath S"

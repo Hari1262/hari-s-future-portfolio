@@ -49,12 +49,12 @@ const ProjectCard = ({
     <>
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, y: 80, rotateX: 15 }}
-        animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 80, rotateX: 15 }}
+        initial={{ opacity: 0, y: 80, rotateX: 15, filter: "blur(6px)" }}
+        animate={isInView ? { opacity: 1, y: 0, rotateX: 0, filter: "blur(0px)" } : { opacity: 0, y: 80, rotateX: 15, filter: "blur(6px)" }}
         transition={{
-          duration: 0.9,
+          duration: 1,
           delay: index * 0.2,
-          ease: [0.25, 0.46, 0.45, 0.94],
+          ease: [0.22, 1, 0.36, 1],
         }}
         style={{
           perspective: "1200px",

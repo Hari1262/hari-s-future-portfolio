@@ -58,13 +58,17 @@ const SkillCard = ({
         {category.title}
       </h3>
       <div className="flex flex-wrap gap-2">
-        {category.skills.map((skill) => (
-          <span
+        {category.skills.map((skill, si) => (
+          <motion.span
             key={skill}
-            className="px-4 py-2 rounded-full text-sm font-medium bg-secondary text-secondary-foreground border border-border/50 hover:border-accent/40 hover:bg-accent/5 transition-all duration-300"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.4, delay: index * 0.15 + si * 0.06 }}
+            whileHover={{ scale: 1.1, y: -3 }}
+            className="px-4 py-2 rounded-full text-sm font-medium bg-secondary text-secondary-foreground border border-border/50 hover:border-accent/40 hover:bg-accent/10 hover:text-accent transition-all duration-300 cursor-default"
           >
             {skill}
-          </span>
+          </motion.span>
         ))}
       </div>
     </motion.div>
