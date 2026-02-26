@@ -1,41 +1,96 @@
-import { Award, BookOpen, Trophy, ExternalLink } from "lucide-react";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { Award, ExternalLink, Eye } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
 import ScrollReveal from "./ScrollReveal";
-import { useCertifications, useAwards } from "@/hooks/usePortfolioData";
 
-const CertCard = ({ cert, index }: { cert: any; index: number }) => {
+const certifications = [
+  { name: "AWS Cloud Practitioner", icon: "☁️", drive_url: "https://drive.google.com/file/d/example1" },
+  { name: "IBM Data Science Professional", icon: "📊", drive_url: "https://drive.google.com/file/d/example2" },
+  { name: "Cisco Networking Essentials", icon: "🌐", drive_url: "https://drive.google.com/file/d/example3" },
+  { name: "Google Data Analytics", icon: "📈", drive_url: "https://drive.google.com/file/d/example4" },
+  { name: "Python for Data Science – IBM", icon: "🐍", drive_url: "https://drive.google.com/file/d/example5" },
+  { name: "Machine Learning – Stanford Online", icon: "🤖", drive_url: "https://drive.google.com/file/d/example6" },
+];
+
+const CertCard = ({ cert, index }: { cert: typeof certifications[0]; index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-30px" });
+  const [showPreview, setShowPreview] = useState(false);
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
-      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="glass-card-elevated rounded-2xl p-5 flex items-center gap-4 group hover:border-accent/30 transition-all duration-300 float-3d"
-    >
-      <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 text-lg group-hover:scale-110 transition-transform">
-        {cert.icon}
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-foreground truncate">{cert.name}</p>
-        {cert.drive_url && (
-          <a href={cert.drive_url} target="_blank" rel="noopener noreferrer" className="text-xs text-accent hover:underline flex items-center gap-1 mt-0.5">
-            <ExternalLink size={10} /> View Certificate
-          </a>
+    <>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+        animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
+        transition={{ duration: 0.5, delay: index * 0.07, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="glass-card-elevated rounded-2xl p-5 flex items-center gap-4 group hover:border-accent/30 transition-all duration-300 float-3d"
+      >
+        <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 text-lg group-hover:scale-110 transition-transform">
+          {cert.icon}
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-medium text-foreground truncate">{cert.name}</p>
+        </div>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {cert.drive_url && (
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowPreview(true)}
+              className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent hover:bg-accent/20 transition-colors"
+              aria-label="View certificate"
+            >
+              <Eye size={14} />
+            </motion.button>
+          )}
+          <Award size={14} className="text-stone group-hover:text-accent transition-colors" />
+        </div>
+      </motion.div>
+
+      <AnimatePresence>
+        {showPreview && cert.drive_url && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-foreground/20 backdrop-blur-md"
+            onClick={() => setShowPreview(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="glass-card-elevated rounded-3xl p-6 max-w-2xl w-full relative"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{cert.icon}</span>
+                  <h3 className="font-serif text-lg font-medium text-foreground">{cert.name}</h3>
+                </div>
+                <button onClick={() => setShowPreview(false)} className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground">✕</button>
+              </div>
+              <div className="rounded-xl overflow-hidden bg-secondary/50 h-96 flex items-center justify-center mb-4">
+                <iframe src={cert.drive_url.replace("/file/d/", "/file/d/").replace(/\/view.*$/, "/preview")} className="w-full h-full border-0" title={cert.name} />
+              </div>
+              <a
+                href={cert.drive_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm font-medium hover:opacity-90 transition-opacity w-fit mx-auto"
+              >
+                <ExternalLink size={14} /> Open in New Tab
+              </a>
+            </motion.div>
+          </motion.div>
         )}
-      </div>
-      <Award size={14} className="text-stone group-hover:text-accent transition-colors flex-shrink-0" />
-    </motion.div>
+      </AnimatePresence>
+    </>
   );
 };
 
 const Certifications = () => {
-  const { data: certifications } = useCertifications();
-  const { data: awards } = useAwards();
-
   return (
     <section className="section-padding">
       <div className="max-w-6xl mx-auto">
@@ -45,33 +100,9 @@ const Certifications = () => {
             Certifications<span className="text-gradient-warm">.</span>
           </h2>
         </ScrollReveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
-          {certifications?.map((cert, i) => (
-            <CertCard key={cert.id} cert={cert} index={i} />
-          ))}
-        </div>
-
-        <ScrollReveal>
-          <p className="text-sm font-medium tracking-[0.3em] uppercase text-accent mb-4 text-center">Recognition</p>
-          <h2 className="editorial-subheading text-center mb-10">
-            Awards & <span className="italic font-normal">Research</span>
-          </h2>
-        </ScrollReveal>
-        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          {awards?.map((award, i) => (
-            <ScrollReveal key={award.id} delay={i * 0.15}>
-              <div className="glass-card-elevated rounded-2xl p-6 float-3d">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    {i === 0 ? <Trophy size={18} className="text-accent" /> : <BookOpen size={18} className="text-accent" />}
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-foreground mb-1">{award.title}</h3>
-                    <p className="text-sm text-muted-foreground">{award.subtitle}</p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {certifications.map((cert, i) => (
+            <CertCard key={cert.name} cert={cert} index={i} />
           ))}
         </div>
       </div>

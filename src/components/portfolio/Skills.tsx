@@ -1,9 +1,15 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import ScrollReveal from "./ScrollReveal";
-import { useSkillCategories } from "@/hooks/usePortfolioData";
 
-const SkillCard = ({ category, index }: { category: { title: string; skills: string[] }; index: number }) => {
+const categories = [
+  { title: "Languages", skills: ["Java", "Python", "SQL", "JavaScript", "TypeScript"] },
+  { title: "Web & Frameworks", skills: ["React", "Node.js", "HTML/CSS", "Tailwind CSS", "Express.js"] },
+  { title: "Data & ML", skills: ["Pandas", "NumPy", "Scikit-learn", "TensorFlow", "Matplotlib"] },
+  { title: "Tools & Platforms", skills: ["Git", "GitHub", "VS Code", "Jupyter", "Figma", "Postman"] },
+];
+
+const SkillCard = ({ category, index }: { category: typeof categories[0]; index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -36,8 +42,6 @@ const SkillCard = ({ category, index }: { category: { title: string; skills: str
 };
 
 const Skills = () => {
-  const { data: categories } = useSkillCategories();
-
   return (
     <section id="skills" className="section-padding bg-secondary/30">
       <div className="max-w-6xl mx-auto">
@@ -48,8 +52,8 @@ const Skills = () => {
           </h2>
         </ScrollReveal>
         <div className="grid md:grid-cols-2 gap-6">
-          {categories?.map((cat, i) => (
-            <SkillCard key={cat.id} category={cat} index={i} />
+          {categories.map((cat, i) => (
+            <SkillCard key={cat.title} category={cat} index={i} />
           ))}
         </div>
       </div>

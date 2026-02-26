@@ -2,18 +2,18 @@ import { GraduationCap, School, BookOpen, type LucideIcon } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import ScrollReveal from "./ScrollReveal";
-import { useEducation } from "@/hooks/usePortfolioData";
 
-const iconMap: Record<number, LucideIcon> = {
-  0: BookOpen,
-  1: School,
-  2: GraduationCap,
-};
+const educationSteps = [
+  { degree: "B.Tech Information Technology", institution: "Mepco Schlenk Engineering College", year: "2022 – 2026", detail: "CGPA: 7.8", is_current: true },
+  { degree: "Higher Secondary (XII)", institution: "SMHSS Sivakasi", year: "2020 – 2022", detail: "Percentage: 85%", is_current: false },
+  { degree: "Secondary School (X)", institution: "SMHSS Sivakasi", year: "2020", detail: "Percentage: 90%", is_current: false },
+];
+
+const iconMap: Record<number, LucideIcon> = { 0: BookOpen, 1: School, 2: GraduationCap };
 
 const Education = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const { data: educationSteps } = useEducation();
 
   return (
     <section id="education" className="section-padding bg-secondary/30">
@@ -32,14 +32,14 @@ const Education = () => {
             className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border origin-top md:-translate-x-px"
           />
           <div className="space-y-12">
-            {educationSteps?.map((step, i) => {
+            {educationSteps.map((step, i) => {
               const isRight = i % 2 === 0;
               const IconComp = iconMap[i] || GraduationCap;
               return (
                 <motion.div
-                  key={step.id}
+                  key={step.degree}
                   initial={{ opacity: 0, x: isRight ? -60 : 60, filter: "blur(4px)" }}
-                  animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : { opacity: 0, x: isRight ? -60 : 60, filter: "blur(4px)" }}
+                  animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
                   transition={{ duration: 0.8, delay: 0.3 + i * 0.25, ease: [0.22, 1, 0.36, 1] }}
                   className={`relative flex items-start gap-6 md:gap-0 ${isRight ? "md:flex-row" : "md:flex-row-reverse"}`}
                 >

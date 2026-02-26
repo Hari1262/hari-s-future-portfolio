@@ -1,10 +1,22 @@
 import { Briefcase } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
-import { useExperiences } from "@/hooks/usePortfolioData";
+
+const experiences = [
+  {
+    role: "Data Science Intern",
+    company: "YBI Foundation",
+    year: "2024",
+    details: ["Developed ML models for predictive analytics", "Worked with large datasets using Python and Pandas", "Created data visualizations and reports"],
+  },
+  {
+    role: "Web Development Intern",
+    company: "Infomatronics Engineering",
+    year: "2023",
+    details: ["Built responsive web applications using React", "Collaborated with cross-functional teams", "Implemented RESTful API integrations"],
+  },
+];
 
 const Experience = () => {
-  const { data: experiences } = useExperiences();
-
   return (
     <section id="experience" className="section-padding bg-secondary/30">
       <div className="max-w-4xl mx-auto">
@@ -13,8 +25,8 @@ const Experience = () => {
           <h2 className="editorial-heading mb-16">Internships<span className="text-gradient-warm">.</span></h2>
         </ScrollReveal>
         <div className="space-y-8">
-          {experiences?.map((exp, i) => (
-            <ScrollReveal key={exp.id} delay={i * 0.15}>
+          {experiences.map((exp, i) => (
+            <ScrollReveal key={exp.company} delay={i * 0.15}>
               <div className="glass-card rounded-2xl p-8 relative overflow-hidden group hover:shadow-lg transition-shadow duration-500">
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-accent/30 group-hover:bg-accent transition-colors duration-500" />
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
@@ -30,7 +42,7 @@ const Experience = () => {
                   <span className="text-xs font-mono text-stone tracking-wider sm:mt-2">{exp.year}</span>
                 </div>
                 <ul className="ml-14 space-y-2">
-                  {(exp.details || []).map((d: string) => (
+                  {exp.details.map((d) => (
                     <li key={d} className="text-sm text-muted-foreground flex items-start gap-2">
                       <span className="w-1 h-1 rounded-full bg-accent mt-2 flex-shrink-0" />
                       {d}

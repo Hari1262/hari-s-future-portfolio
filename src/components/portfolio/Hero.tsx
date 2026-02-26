@@ -3,34 +3,22 @@ import { ArrowDown, FileDown, Github, Linkedin, Mail } from "lucide-react";
 import TypeWriter from "./TypeWriter";
 import heroBg from "@/assets/hero-bg.jpg";
 import profilePic from "@/assets/profile-pic.png";
-import { useHeroSettings } from "@/hooks/usePortfolioData";
 
 const Hero = () => {
-  const { data: hero } = useHeroSettings();
-
-  const name = hero?.name || "Hariprasath S";
-  const title = hero?.title || "Data Science & Full Stack Developer";
-  const subtitle = hero?.subtitle || "Portfolio 2026";
-  const githubUrl = hero?.github_url || "#";
-  const linkedinUrl = hero?.linkedin_url || "#";
-  const emailAddr = hero?.email || "";
-  const heroImage = hero?.profile_image_url || profilePic;
-
-  // Dynamic sizing based on name length
-  const nameLen = name.length;
-  const imgSizeClass = nameLen > 15
-    ? "w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56"
-    : "w-40 h-40 md:w-52 md:h-52 lg:w-60 lg:h-60";
+  const name = "Hariprasath S";
+  const title = "Software Developer & Data Analyst";
+  const subtitle = "Portfolio 2026";
+  const githubUrl = "https://github.com/hariprasath-s";
+  const linkedinUrl = "https://www.linkedin.com/in/hariprasath-s-600989297/";
+  const emailAddr = "hariprasath12026@gmail.com";
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
       <div className="absolute inset-0">
         <img src={heroBg} alt="" className="w-full h-full object-cover opacity-30" loading="eager" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
       </div>
 
-      {/* Floating decorative elements */}
       <motion.div
         animate={{ y: [-20, 20, -20], rotate: [0, 5, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -42,7 +30,6 @@ const Hero = () => {
         className="absolute bottom-1/3 left-[10%] w-16 h-16 rounded-full border border-accent/30 bg-accent/5 backdrop-blur-sm hidden lg:block"
       />
 
-      {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -65,8 +52,8 @@ const Hero = () => {
             transition={{ type: "spring", stiffness: 300, damping: 15 }}
             className="relative shrink-0"
           >
-            <div className={`${imgSizeClass} rounded-full overflow-hidden border-[3px] border-accent/50 shadow-xl shadow-accent/20`}>
-              <img src={heroImage} alt={name} className="w-full h-full object-cover" />
+            <div className="w-44 h-44 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-[3px] border-accent/50 shadow-xl shadow-accent/20">
+              <img src={profilePic} alt={name} className="w-full h-full object-cover" />
             </div>
             <motion.div
               animate={{ rotate: 360 }}
@@ -75,8 +62,8 @@ const Hero = () => {
             />
           </motion.div>
           <h1 className="editorial-heading">
-            {name.split(" ").slice(0, -1).join(" ")}
-            <span className="text-gradient-warm italic font-normal"> {name.split(" ").pop()}</span>
+            Hariprasath
+            <span className="text-gradient-warm italic font-normal"> S</span>
           </h1>
         </motion.div>
 
@@ -98,7 +85,6 @@ const Hero = () => {
           <TypeWriter />
         </motion.div>
 
-        {/* Social icons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,7 +134,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

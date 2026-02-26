@@ -3,7 +3,6 @@ import { Mail, Phone, Linkedin, Send, CheckCircle, AlertCircle, Github, type Luc
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import { z } from "zod";
-import { useContactInfo } from "@/hooks/usePortfolioData";
 import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
@@ -14,15 +13,18 @@ const contactSchema = z.object({
 
 type FormErrors = Partial<Record<keyof z.infer<typeof contactSchema>, string>>;
 
-const iconMap: Record<string, LucideIcon> = {
-  Mail, Phone, Linkedin, Github,
-};
+const contactItems = [
+  { icon_type: "Mail", label: "Email", value: "hariprasath12026@gmail.com", href: "mailto:hariprasath12026@gmail.com", is_external: false },
+  { icon_type: "Linkedin", label: "LinkedIn", value: "Hariprasath S", href: "https://www.linkedin.com/in/hariprasath-s-600989297/", is_external: true },
+  { icon_type: "Github", label: "GitHub", value: "hariprasath-s", href: "https://github.com/hariprasath-s", is_external: true },
+];
+
+const iconMap: Record<string, LucideIcon> = { Mail, Phone, Linkedin, Github };
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const { data: contactItems } = useContactInfo();
 
   const validate = () => {
     const result = contactSchema.safeParse(form);
@@ -81,11 +83,11 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-12">
           <ScrollReveal>
             <div className="space-y-5">
-              {contactItems?.map((item) => {
+              {contactItems.map((item) => {
                 const IconComp = iconMap[item.icon_type] || Mail;
                 return (
                   <motion.a
-                    key={item.id}
+                    key={item.label}
                     href={item.href}
                     target={item.is_external ? "_blank" : undefined}
                     rel={item.is_external ? "noopener noreferrer" : undefined}
