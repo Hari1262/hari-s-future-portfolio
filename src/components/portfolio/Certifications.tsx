@@ -5,11 +5,14 @@ import ScrollReveal from "./ScrollReveal";
 
 const certifications = [
   { name: "AWS Cloud Practitioner", icon: "☁️", drive_url: "https://drive.google.com/file/d/example1" },
-  { name: "IBM Data Science Professional", icon: "📊", drive_url: "https://drive.google.com/file/d/example2" },
+  { name: "Artificial Intelligence Fundamentals-IBM SkillsBuild", icon: "📊", drive_url: "https://drive.google.com/file/d/17_soyKA8Uk_N8_i2QurNHxKJ-Nk466Aa/view?usp=drive_link" },
   { name: "Cisco Networking Essentials", icon: "🌐", drive_url: "https://drive.google.com/file/d/example3" },
-  { name: "Google Data Analytics", icon: "📈", drive_url: "https://drive.google.com/file/d/example4" },
-  { name: "Python for Data Science – IBM", icon: "🐍", drive_url: "https://drive.google.com/file/d/example5" },
+  { name: "Oracle Certified Professional Certificate of Recognition", icon: "📈", drive_url: "https://drive.google.com/file/d/12anOEKagUz1DWW3uYREmDQDZfp_OksoV/view?usp=drive_link" },
+  { name: "Cybersecurity Analyst Job Simulation-TATA Forage", icon: "🤖", drive_url: "https://drive.google.com/file/d/1ZrmPBQn3vqrZNCJJhtSvBiTcTS9U_CFW/view?usp=drive_link" },
   { name: "Machine Learning – Stanford Online", icon: "🤖", drive_url: "https://drive.google.com/file/d/example6" },
+  { name: "AWS Cloud Practitioner", icon: "☁️", drive_url: "https://drive.google.com/file/d/example1" },
+  { name: "AWS Cloud Practitioner", icon: "☁️", drive_url: "https://drive.google.com/file/d/example1" },
+  { name: "AWS Cloud Practitioner", icon: "☁️", drive_url: "https://drive.google.com/file/d/example1" },
 ];
 
 const CertCard = ({ cert, index }: { cert: typeof certifications[0]; index: number }) => {
