@@ -4,13 +4,13 @@ import { useRef, useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 
 const certifications = [
-  { name: "AWS Cloud Practitioner", icon: "☁️", drive_url: "https://drive.google.com/file/d/example1" },
-  { name: "Artificial Intelligence Fundamentals-IBM SkillsBuild", icon: "📊", drive_url: "https://drive.google.com/file/d/17_soyKA8Uk_N8_i2QurNHxKJ-Nk466Aa/view?usp=drive_link" },
+  { name: "Acquiring Data-futureskills prime", icon: "☁️", drive_url: "https://drive.google.com/file/d/16SjBqzBn2YnKMwdw_ZaWDfWjUK2uJeiC/view?usp=drive_link" },
+  { name: "Artificial Intelligence Fundamentals-IBM SkillsBuild", icon: "📊", drive_url: "https://drive.google.com/file/d/17_soyKA8Uk_N8_i2QurNHxKJ-Nk466Aa/view?usp=sharing" },
   { name: "Cisco Networking Essentials", icon: "🌐", drive_url: "https://drive.google.com/file/d/example3" },
-  { name: "Oracle Certified Professional Certificate of Recognition", icon: "📈", drive_url: "https://drive.google.com/file/d/12anOEKagUz1DWW3uYREmDQDZfp_OksoV/view?usp=drive_link" },
+  { name: "Oracle Certified Professional Certificate of Recognition", icon: "📈", drive_url: "https://drive.google.com/file/d/12anOEKagUz1DWW3uYREmDQDZfp_OksoV/view?usp=sharing" },
   { name: "Cybersecurity Analyst Job Simulation-TATA Forage", icon: "🤖", drive_url: "https://drive.google.com/file/d/1ZrmPBQn3vqrZNCJJhtSvBiTcTS9U_CFW/view?usp=drive_link" },
-  { name: "Machine Learning – Stanford Online", icon: "🤖", drive_url: "https://drive.google.com/file/d/example6" },
-  { name: "AWS Cloud Practitioner", icon: "☁️", drive_url: "https://drive.google.com/file/d/example1" },
+  { name: "UiPath Automation Developer Associate Training-ui path", icon: "🤖", drive_url: "https://drive.google.com/file/d/1FlWOc1FftlTnDhsXzCccslHvbslOFHeO/view?usp=sharing" },
+  { name: "Claude Code in Action-Anthropic", icon: "☁️", drive_url: "https://drive.google.com/file/d/1OjpixeM6VWlWv8wby6jcW_Ye8TOE0dSZ/view?usp=sharing" },
   { name: "AWS Cloud Practitioner", icon: "☁️", drive_url: "https://drive.google.com/file/d/example1" },
   { name: "AWS Cloud Practitioner", icon: "☁️", drive_url: "https://drive.google.com/file/d/example1" },
 ];
