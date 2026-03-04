@@ -6,7 +6,7 @@ import ScrollReveal from "./ScrollReveal";
 const certifications = [
   { name: "Acquiring Data-futureskills prime", icon: "☁️", drive_url: "https://drive.google.com/file/d/16SjBqzBn2YnKMwdw_ZaWDfWjUK2uJeiC/view?usp=drive_link" },
   { name: "Artificial Intelligence Fundamentals-IBM SkillsBuild", icon: "📊", drive_url: "https://drive.google.com/file/d/17_soyKA8Uk_N8_i2QurNHxKJ-Nk466Aa/view?usp=sharing" },
-  { name: "Cisco Networking Essentials", icon: "🌐", drive_url: "https://drive.google.com/file/d/example3" },
+  { name: "Cisco Networking Essentials", icon: "🌐", drive_url: "https://drive.google.com/file/d/178EAmYb-yAWNcPeI0M6_oKSY7s0wHOyk/view?usp=sharing" },
   { name: "Oracle Certified Professional Certificate of Recognition", icon: "📈", drive_url: "https://drive.google.com/file/d/12anOEKagUz1DWW3uYREmDQDZfp_OksoV/view?usp=sharing" },
   { name: "Cybersecurity Analyst Job Simulation-TATA Forage", icon: "🤖", drive_url: "https://drive.google.com/file/d/1ZrmPBQn3vqrZNCJJhtSvBiTcTS9U_CFW/view?usp=drive_link" },
   { name: "UiPath Automation Developer Associate Training-ui path", icon: "🤖", drive_url: "https://drive.google.com/file/d/1FlWOc1FftlTnDhsXzCccslHvbslOFHeO/view?usp=sharing" },
